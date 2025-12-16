@@ -36,7 +36,9 @@ public class OilDousingHandler {
                 return InteractionResult.PASS;
             }
             if (interacting.gameMode.isSurvival()) {
-                var playerCount = ((ServerLevel) level).getPlayers(GameFunctions::isPlayerAliveAndSurvival).size();
+                var alivePlayers = ((ServerLevel) level).getPlayers(GameFunctions::isPlayerAliveAndSurvival);
+                var playerCount = alivePlayers.size();
+                var dousedPlayers = alivePlayers.stream().filter(p -> DousedPlayerComponent.KEY.get(p).isDoused()).toList();
                 var cd = 45 - (5/3.0) * (double) playerCount;
 
                 if (playerCount > 15) {
@@ -44,6 +46,9 @@ public class OilDousingHandler {
                 }
 
                 interacting.getCooldowns().addCooldown(item.getItem(), (int) (cd * 20));
+                if (dousedPlayers.size() >= (int) (alivePlayers.size() * 0.3)) {
+                    interacting.getCooldowns().addCooldown(ModItems.LIGHTER, (int) (cd * 20));
+                }
             }
             DousedPlayerComponent doused = DousedPlayerComponent.KEY.get(victim);
             doused.setDoused(true);

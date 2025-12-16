@@ -10,7 +10,9 @@
   "hud.arsonist.doused.true": "Doused",
   "hud.arsonist.doused.false": "Not Doused",
   "item.stupid_express.jerry_can": "Jerry Can",
+  "item.stupid_express.jerry_can.tooltip": "Interact on a player to douse them in oil.",
   "item.stupid_express.lighter": "Lighter",
+  "item.stupid_express.lighter.tooltip": "When this goes on cooldown, that indicates it is time to ignite.\nInteract with this to ignite all currently doused players\nwhen the time has come.",
   "death_reason.stupid_express.failed_ignite": "ignition misfire.",
   "death_reason.stupid_express.ignited": "being lit ablaze.",
 
