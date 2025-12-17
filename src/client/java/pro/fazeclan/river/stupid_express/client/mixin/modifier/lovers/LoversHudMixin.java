@@ -26,13 +26,8 @@ public abstract class LoversHudMixin {
 
     @Inject(method = "renderHud", at = @At("TAIL"))
     private static void loversHud(Font renderer, LocalPlayer player, GuiGraphics context, DeltaTracker tickCounter, CallbackInfo ci) {
-        if (StupidExpressClient.target == null) {
-            return;
-        }
         var component = LoversComponent.KEY.get(player);
-        var targetComponent = LoversComponent.KEY.get(StupidExpressClient.target);
         if (component.isLover()
-                && targetComponent.isLover()
                 && !TMMClient.isPlayerSpectatingOrCreative()) {
             context.pose().pushPose();
 
